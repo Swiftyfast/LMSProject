@@ -1,7 +1,5 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(LMSProject.UI.Startup))]
 namespace LMSProject.UI
 {
     public partial class Startup
