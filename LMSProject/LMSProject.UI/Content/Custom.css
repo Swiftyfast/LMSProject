@@ -1,0 +1,63 @@
+﻿
+.myContainer {
+    width: 60%;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 1em;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+#footer {
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+
+/***********My button stylings/***********/
+
+/*Base colors, or type 1*/
+.myPrimary {
+    color: #fff;
+    background-color: #29c98d;
+    border-color: #1E966A;
+}
+
+    /* Type 2 colors */
+    .myPrimary.focus, .myPrimary:focus {
+        color: #fff;
+        background-color: #0F4A34;
+        border-color: #69D2AC;
+    }
+
+    /* Type 3 colors*/
+    .myPrimary:hover {
+        color: #fff;
+        background-color: #1E966A;
+        border-color: #254A3C;
+    }
+
+/* Type 3 colors*/
+.myPrimary.active, .myPrimary:active, .open > .dropdown-toggle.myPrimary {
+    color: #fff;
+    background-color: #1E966A;
+    border-color: #254A3C;
+}
+
+    /* Type 2 colors */
+    .myPrimary.active.focus, .myPrimary.active:focus, .myPrimary.active:hover, .myPrimary:active.focus, .myPrimary:active:focus, .myPrimary:active:hover, .open > .dropdown-toggle.myPrimary.focus, .open > .dropdown-toggle.myPrimary:focus, .open > .dropdown-toggle.myPrimary:hover {
+        color: #fff;
+        background-color: #0F4A34;
+        border-color: #69D2AC;
+    }
+
+    /*Type 1 colors*/
+    .myPrimary.disabled.focus, .myPrimary.disabled:focus, .myPrimary.disabled:hover, .myPrimary[disabled].focus, .myPrimary[disabled]:focus, .myPrimary[disabled]:hover, fieldset[disabled] .myPrimary.focus, fieldset[disabled] .myPrimary:focus, fieldset[disabled] .myPrimary:hover {
+        background-color: #29c98d;
+        border-color: #1E966A;
+    }
+
+    /*Type 1 colors Note the reversal*/
+    .myPrimary .badge {
+        color: #29c98d;
+        background-color: #fff
+    }

@@ -24,14 +24,14 @@
 
     // HOME SLIDER & COURSES & CLIENTS
     $('.home-slider').owlCarousel({
-      animateOut: 'fadeOut',
-      items:1,
-      loop:true,
-      dots:false,
-      autoplayHoverPause: false,
-      autoplay: true,
-      smartSpeed: 1000,
-    })
+        animateOut: 'fadeOut',
+        items: 1,
+        loop: true,
+        dots: false,
+        autoplayHoverPause: false,
+        autoplay: true,
+        smartSpeed: 1000,
+    });
 
     $('.owl-courses').owlCarousel({
       animateOut: 'fadeOut',
