@@ -5,30 +5,55 @@
 }
 
 <div class="myContainer">
-    <h2>@ViewBag.Title</h2>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
 
-    <div>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.FirstName)
-            </dd>
+        <h2>@ViewBag.Title</h2>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LastName)
-            </dt>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LastName)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
 
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }, new { @class= "btn myPrimary"}) |
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton" })
-    </p>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+
+            </dl>
+        </div>
+
+        <p>
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }, new { @class = "btn myPrimary" })
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
+                </div>
+                <br />
+            }
+            else
+            {
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton" })
+            }
+
+        </p>
+    }
+    else
+    {
+        <h2>Welcome to one of our many details' pages.</h2>
+        <h4>You do not currently have the status to see a user's information.</h4>
+        <div>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
+        </div>
+    }
 </div>

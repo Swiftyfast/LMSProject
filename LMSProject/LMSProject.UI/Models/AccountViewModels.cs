@@ -79,6 +79,16 @@ namespace LMSProject.UI.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        //Custom Code below
+        [Required(ErrorMessage = "* Required *")]
+        [StringLength(50, ErrorMessage = "* First Name must be 50 characters or less. *")]
+        public string FirstName { get; set; }
+
+        //Possibly should add [Display(Name = "")] like it was in Metadata
+        [Required(ErrorMessage = "* Required *")]
+        [StringLength(50, ErrorMessage = "* Last Name must be 50 characters or less. *")]
+        public string LastName { get; set; }
     }
 
     public class ResetPasswordViewModel

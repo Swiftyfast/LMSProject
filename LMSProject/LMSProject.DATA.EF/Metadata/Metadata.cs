@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LMSProject.DATA.EF//.Metadata
 {
-    class Metadata
-    {
+    //class Metadata
+    //{
         #region Course Metadata
         public class CourseMetadata
         {
@@ -124,25 +124,23 @@ namespace LMSProject.DATA.EF//.Metadata
             public string UserId { get; set; }
 
             [Required(ErrorMessage = "* Required *")]
-            [StringLength(200, ErrorMessage = "* First Name must be 50 characters or less. *")]
+            [StringLength(50, ErrorMessage = "* First Name must be 50 characters or less. *")]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required(ErrorMessage = "* Required *")]
-            [StringLength(200, ErrorMessage = "* Last Name must be 50 characters or less. *")]
+            [StringLength(50, ErrorMessage = "* Last Name must be 50 characters or less. *")]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
         }
 
         [MetadataType(typeof(UserDetailsMetadata))]
-        public partial class UserDetails {
+        public partial class UserDetail {
+            
+            [Display(Name = "User")]
+            public string FullName { get { return LastName + ", " + FirstName; } }
 
-            //TODO this is not working, and I am not sure why
-            //[Display(Name = "User")]
-            //public string FullName { get { return LastName + ", " + FirstName; } }
-            //[Display(Name = "User")]
-            //public string FullName { get {  return } }
         }
         #endregion
-    }
+    //}
 }

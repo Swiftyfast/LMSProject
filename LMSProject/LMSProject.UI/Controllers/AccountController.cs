@@ -1,4 +1,5 @@
-﻿using LMSProject.UI.Models;
+﻿using LMSProject.DATA.EF;
+using LMSProject.UI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -153,11 +154,24 @@ namespace LMSProject.UI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    #region Dealing with custom user details
+                    //Below was a recommendation from intellisense instead of UserDetails and UserDetails()
+                    UserDetail newUserDeets = new UserDetail();
+                    newUserDeets.UserId = user.Id;
+                    newUserDeets.FirstName = model.FirstName;
+                    newUserDeets.LastName = model.LastName;
+                    //newUserDeets.ResumeFile = model.ResumeFile;//I don't think I have to do this it was just in the example.
+
+                    LMSProjectEntities db = new LMSProjectEntities();
+                    db.UserDetails.Add(newUserDeets);
+                    db.SaveChanges();
+                    #endregion
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    return RedirectToAction("Index", "UserDetails");
+                    //return View("DisplayEmail");
                 }
                 AddErrors(result);
             }
