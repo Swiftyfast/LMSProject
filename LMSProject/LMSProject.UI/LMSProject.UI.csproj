@@ -201,6 +201,8 @@
     <Content Include="Content\images\courses-image3.jpg" />
     <Content Include="Content\images\courses-image4.jpg" />
     <Content Include="Content\images\courses-image5.jpg" />
+    <Content Include="Content\images\lab1.jfif" />
+    <Content Include="Content\images\science1.jfif" />
     <Content Include="Content\images\slider-image1.jpg" />
     <Content Include="Content\images\slider-image2.jpg" />
     <Content Include="Content\images\slider-image3.jpg" />
@@ -208,6 +210,9 @@
     <Content Include="Content\images\tst-image2.jpg" />
     <Content Include="Content\images\tst-image3.jpg" />
     <Content Include="Content\images\tst-image4.jpg" />
+    <Content Include="Content\images\volcano1.jfif" />
+    <Content Include="Content\images\whale1.jfif" />
+    <Content Include="Content\images\wolf1.jfif" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\jquery.js" />
