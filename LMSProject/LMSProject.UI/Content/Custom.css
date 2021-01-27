@@ -13,6 +13,25 @@
     padding-bottom: 4em;
 }
 
+/* This is for when two buttons are too close*/
+.leftMarge{
+    margin-left: 2em;
+}
+
+.myAlert {
+    color: #7D0C38;
+    background-color: #FC1970;
+    border-color: #7D0C38;
+}
+
+    /*.myAlert hr {
+        border-top-color: #e4b9c0
+    }
+
+    .myAlert .alert-link {
+        color: #843534
+    }*/
+
 /***********My button stylings/***********/
 
 /*Base colors, or type 1*/
@@ -61,3 +80,111 @@
         color: #29c98d;
         background-color: #fff
     }
+
+    /*** Button 2 ***/
+.myBackButton {
+    color: #fff;
+    background-color: #3c5c63;
+    border-color: #2D454A;
+}
+
+    /* Type 2 colors */
+    .myBackButton.focus, .myBackButton:focus {
+        color: #fff;
+        background-color: #6BA3B0;
+        border-color: #3C5C63;
+    }
+
+    /* Type 3 colors*/
+    .myBackButton:hover {
+        color: #fff;
+        background-color: #92DFF0;
+        border-color: #6BA3B0;
+    }
+
+    /* Type 3 colors*/
+    .myBackButton.active, .myBackButton:active, .open > .dropdown-toggle.myBackButton {
+        color: #fff;
+        background-color: #92DFF0;
+        border-color: #6BA3B0;
+    }
+
+        /* Type 2 colors */
+        .myBackButton.active.focus, .myBackButton.active:focus, .myBackButton.active:hover, .myBackButton:active.focus, .myBackButton:active:focus, .myBackButton:active:hover, .open > .dropdown-toggle.myBackButton.focus, .open > .dropdown-toggle.myBackButton:focus, .open > .dropdown-toggle.myBackButton:hover {
+            color: #fff;
+            background-color: #6BA3B0;
+            border-color: #3C5C63;
+        }
+
+    /*Type 1 colors*/
+    .myBackButton.disabled.focus, .myBackButton.disabled:focus, .myBackButton.disabled:hover, .myBackButton[disabled].focus, .myBackButton[disabled]:focus, .myBackButton[disabled]:hover, fieldset[disabled] .myBackButton.focus, fieldset[disabled] .myBackButton:focus, fieldset[disabled] .myBackButton:hover {
+        background-color: #29c98d;
+        border-color: #3c5c63;
+    }
+
+    /*Type 1 colors Note the reversal*/
+    .myBackButton .badge {
+        color: #3c5c63;
+        background-color: #fff
+    }
+
+
+/***Button type 3***/
+.myDanger {
+    color: #fff;
+    background-color: #fc1970;
+    border-color: #BD1354;
+}
+
+    /* Type 2 colors */
+    .myDanger.focus, .myDanger:focus {
+        color: #fff;
+        background-color: #E31765;
+        border-color: #7D0C38;
+    }
+
+    /* Type 3 colors*/
+    .myDanger:hover {
+        color: #fff;
+        background-color: #7D0C38;
+        border-color: #3D061B;
+    }
+
+    /* Type 3 colors*/
+    .myDanger.active, .myDanger:active, .open > .dropdown-toggle.myDanger {
+        color: #fff;
+        background-color: #7D0C38;
+        border-color: #3D061B;
+    }
+
+        /* Type 2 colors */
+        .myDanger.active.focus, .myDanger.active:focus, .myDanger.active:hover, .myDanger:active.focus, .myDanger:active:focus, .myDanger:active:hover, .open > .dropdown-toggle.myDanger.focus, .open > .dropdown-toggle.myDanger:focus, .open > .dropdown-toggle.myDanger:hover {
+            color: #fff;
+            background-color: #E31765;
+            border-color: #7D0C38;
+        }
+
+    /*Type 1 colors*/
+    .myDanger.disabled.focus, .myDanger.disabled:focus, .myDanger.disabled:hover, .myDanger[disabled].focus, .myDanger[disabled]:focus, .myDanger[disabled]:hover, fieldset[disabled] .myDanger.focus, fieldset[disabled] .myDanger:focus, fieldset[disabled] .myDanger:hover {
+        background-color: #fc1970;
+        border-color: #BD1354;
+    }
+
+    /*Type 1 colors Note the reversal*/
+    .myDanger .badge {
+        color: #fc1970;
+        background-color: #fff
+    }
+
+/*******************************
+    Mobile Responsiveness
+********************************/
+
+/*@media screen and (max-width: 1000px) and (min-width: 400px) {
+}*/
+
+@media screen and (max-width: 500px){
+    .myContainer{
+        width: 95%;
+    }
+}
