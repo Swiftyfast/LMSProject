@@ -8,8 +8,7 @@
     @if (User.IsInRole("Admin"))
     {
         <h2>@ViewBag.Title</h2>
-
-
+        
         using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
