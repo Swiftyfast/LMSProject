@@ -168,9 +168,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CourseCompletionsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LessonsController.cs" />
+    <Compile Include="Controllers\LessonViewsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\PDFService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\bootstrap.min.css" />
@@ -342,9 +345,20 @@
     <Content Include="Views\Lessons\Edit.cshtml" />
     <Content Include="Views\Lessons\Index.cshtml" />
     <Content Include="Views\Lessons\InactiveIndex.cshtml" />
+    <Content Include="Views\LessonViews\Create.cshtml" />
+    <Content Include="Views\LessonViews\Delete.cshtml" />
+    <Content Include="Views\LessonViews\Details.cshtml" />
+    <Content Include="Views\LessonViews\Edit.cshtml" />
+    <Content Include="Views\LessonViews\Index.cshtml" />
+    <Content Include="Views\CourseCompletions\Create.cshtml" />
+    <Content Include="Views\CourseCompletions\Delete.cshtml" />
+    <Content Include="Views\CourseCompletions\Details.cshtml" />
+    <Content Include="Views\CourseCompletions\Edit.cshtml" />
+    <Content Include="Views\CourseCompletions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\pdfs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LMSProject.DATA.EF;
+using LMSProject.UI.Utilities;
 
 namespace LMSProject.UI.Controllers
 {
@@ -89,10 +90,38 @@ namespace LMSProject.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LessonId,LessonTitle,CourseId,Introduction,VideoURL,PdfFilename,IsActive")] Lesson lesson)
+        public ActionResult Edit([Bind(Include = "LessonId,LessonTitle,CourseId,Introduction,VideoURL,PdfFilename,IsActive")] Lesson lesson, HttpPostedFileBase lessonPDF)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string file = "NoFile.pdf";
+                if (lessonPDF != null)
+                {
+                    file = lessonPDF.FileName;
+                    string ext = file.Substring(file.LastIndexOf('.'));
+                    string[] goodExtensions = { ".pdf" };
+                    if (goodExtensions.Contains(ext))
+                    {
+                        //ASP.NET max in 1073741824 but I went with below becuase I didnot want to change max request length in web.config.
+                        if (lessonPDF.ContentLength <= 4194304)
+                        {
+                            file = Guid.NewGuid() + ext;
+                            if(lesson.PdfFilename != null && lesson.PdfFilename != "NoFile.pdf")
+                            {
+                                string path = Server.MapPath("~/Content/pdfs/");
+
+                                PDFService.SavePDF(path, file, lessonPDF);
+                                //ImageService.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
+
+
+                                //ImagerService.Delete(path, product.ImagePath);
+                            }
+                        }
+                        lesson.PdfFilename = file;
+                    }
+                }
+                #endregion
                 db.Entry(lesson).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
