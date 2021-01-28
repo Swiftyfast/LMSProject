@@ -56,10 +56,38 @@ namespace LMSProject.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LessonId,LessonTitle,CourseId,Introduction,VideoURL,PdfFilename,IsActive")] Lesson lesson)
+        public ActionResult Create([Bind(Include = "LessonId,LessonTitle,CourseId,Introduction,VideoURL,PdfFilename,IsActive")] Lesson lesson, HttpPostedFileBase lessonPDF)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string file = "NoFile.pdf";
+
+                if(lessonPDF != null)
+                {
+                    file = lessonPDF.FileName;
+                    string ext = file.Substring(file.LastIndexOf('.'));
+
+                    if(ext.ToLower() == ".pdf")
+                    {
+                        if(lessonPDF.ContentLength <= 4194304)
+                        {
+                            file = Guid.NewGuid() + ext;
+                            string path = Server.MapPath("~/Content/pdfs/" + file);
+
+                            lessonPDF.SaveAs(path);
+                            //if (lesson.PdfFilename != "NoFile.pdf")
+                            //{
+                            //    System.IO.File.Delete(Server.MapPath("~/Content/pdfs/" + lesson.PdfFilename));
+
+                            //}
+                            lesson.PdfFilename = file;
+                        }
+                    }
+                }
+
+
+                #endregion
                 db.Lessons.Add(lesson);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,13 +138,12 @@ namespace LMSProject.UI.Controllers
                             string path = Server.MapPath("~/Content/pdfs/" + file);
 
                             lessonPDF.SaveAs(path);
-                            lesson.PdfFilename = file;
                             if ( lesson.PdfFilename != "NoFile.pdf")
                             {
                                 System.IO.File.Delete(Server.MapPath("~/Content/pdfs/" + lesson.PdfFilename));
                                 
                             }
-                            //lesson.PdfFilename = file;
+                            lesson.PdfFilename = file;
                         }
                         
                     }
