@@ -95,30 +95,30 @@ namespace LMSProject.UI.Controllers
             if (ModelState.IsValid)
             {
                 #region File Upload
-                string file = "NoFile.pdf";
+                //string file = "NoFile.pdf";//Create code
                 if (lessonPDF != null)
                 {
-                    file = lessonPDF.FileName;
+                    string file = lessonPDF.FileName;
                     string ext = file.Substring(file.LastIndexOf('.'));
-                    string[] goodExtensions = { ".pdf" };
-                    if (goodExtensions.Contains(ext))
+                    //string[] goodExtensions = { ".pdf" };
+                    if (ext.ToLower() == ".pdf")
                     {
                         //ASP.NET max in 1073741824 but I went with below becuase I didnot want to change max request length in web.config.
                         if (lessonPDF.ContentLength <= 4194304)
                         {
                             file = Guid.NewGuid() + ext;
-                            if(lesson.PdfFilename != null && lesson.PdfFilename != "NoFile.pdf")
+                            string path = Server.MapPath("~/Content/pdfs/" + file);
+
+                            lessonPDF.SaveAs(path);
+                            lesson.PdfFilename = file;
+                            if ( lesson.PdfFilename != "NoFile.pdf")
                             {
-                                string path = Server.MapPath("~/Content/pdfs/");
-
-                                PDFService.SavePDF(path, file, lessonPDF);
-                                //ImageService.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
-
-
-                                //ImagerService.Delete(path, product.ImagePath);
+                                System.IO.File.Delete(Server.MapPath("~/Content/pdfs/" + lesson.PdfFilename));
+                                
                             }
+                            //lesson.PdfFilename = file;
                         }
-                        lesson.PdfFilename = file;
+                        
                     }
                 }
                 #endregion

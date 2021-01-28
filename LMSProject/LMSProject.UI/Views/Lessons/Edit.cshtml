@@ -11,14 +11,14 @@
         <h2>@ViewBag.Title</h2>
 
 
-        using (Html.BeginForm())
+        using (Html.BeginForm("Edit", "Lessons", FormMethod.Post, new { @enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
+            <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.LessonId)
-
+            @Html.HiddenFor(model => model.PdfFilename)
             <div class="form-group">
                 @Html.LabelFor(model => model.LessonTitle, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -77,18 +77,18 @@
             <br />
             <br />
         </div>
-        }
     }
-    else
-    {
-        <h2>Welcome to the edit a lesson page.</h2>
-        <h4>Unfortunately, you do not currently have the status to edit a lesson's information.</h4>
-        <div>
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
-        </div>
-    }
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
+else
+{
+    <h2>Welcome to the edit a lesson page.</h2>
+    <h4>Unfortunately, you do not currently have the status to edit a lesson's information.</h4>
+    <div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
+    </div>
+}
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
