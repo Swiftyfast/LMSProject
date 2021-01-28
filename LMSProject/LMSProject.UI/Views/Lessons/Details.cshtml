@@ -34,13 +34,24 @@
             </dd>
 
             <dt>
-                
+
                 @Html.DisplayNameFor(model => model.PdfFilename)
             </dt>
 
             <dd>
-                <a href="@Url.Content("~/Content/pdfs/" + @Html.DisplayFor(model => model.PdfFilename))">@Html.DisplayFor(model => model.LessonTitle) PDF lesson</a>
-                
+                @* Need to make this so that it doesn't *@
+                @if (Html.DisplayFor(model => model.PdfFilename).ToString().Length > 10)
+                {
+                    <a href="@Url.Content("~/Content/pdfs/" + @Html.DisplayFor(model => model.PdfFilename))">
+                        @Html.DisplayFor(model => model.LessonTitle) PDF lesson
+                    </a>
+                }
+                else
+                {
+                    <p>There is no pdf for this lesson.</p>
+                }
+
+
             </dd>
 
             <dt>

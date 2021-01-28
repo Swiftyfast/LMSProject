@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LMSProject.DATA.EF;
 using LMSProject.UI.Utilities;
+using Microsoft.AspNet.Identity;
 
 namespace LMSProject.UI.Controllers
 {
@@ -30,8 +31,10 @@ namespace LMSProject.UI.Controllers
         }
 
         // GET: Lessons/Details/5
+        
         public ActionResult Details(int? id)
         {
+            #region original code
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -41,6 +44,108 @@ namespace LMSProject.UI.Controllers
             {
                 return HttpNotFound();
             }
+            #endregion
+
+            #region create a lessonView
+            //get the current logged on user into a string
+            //string user = 
+            string user = User.Identity.Name;
+            string theUsersID = User.Identity.GetUserId();
+            //check is user is in the role of employee
+            if (User.IsInRole("User"))
+            {
+                LessonView newLV = new LessonView();
+                bool myLoop = false;
+                int newId = id.Value;
+                foreach (LessonView item in db.LessonViews)
+                {
+                    if (item.LessonId == newId && item.UserId == theUsersID)
+                    {
+                        myLoop = true;
+                    }
+                }
+
+                //create the lessionview
+                if (myLoop == false)
+                {
+                    newLV.LessonId = newId;
+                    newLV.UserId = theUsersID;
+                    newLV.DateViewed = DateTime.Now;
+                    db.LessonViews.Add(newLV);
+                    db.SaveChanges();
+                }
+            }
+            //check to see if the employee has viewed this object before
+            //create a lessonview var and go to lessonviews and see if any match current
+            //set boolean value if they have viewed it or not, set as false (default is true)
+            //loop through the lessonsViewed run an if to check id passed in lessonID. Will have to cast from ?int into int. if it matches, set bool to true
+
+            //if they have not viewed lesson create a lessonView object userId, lessonId, dateview (datetime.now)
+
+            //call lessonViews in the database and add this to it
+            //dv.saveChanges()
+            #endregion
+
+            #region create a courseCompletion
+
+            //grab user identity
+            //we have user in the region above, outside of { } so we keep it here
+            if (User.IsInRole("User"))
+            {
+                CourseCompletion cc = new CourseCompletion();
+                bool myCourseLoop = false;
+                //int newId = id.Value;
+                int courseParentId = lesson.CourseId;
+
+                //This will check if they have completed the course previously
+                foreach (CourseCompletion item in db.CourseCompletions)
+                {
+                    if (item.CourseId == courseParentId && item.UserId == theUsersID)
+                    {
+                        myCourseLoop = true;
+                    }
+                }
+
+                //Need some logic in here that can tell if the course has been totally completed
+
+                //loop through lessons getting number of total lessons in a course
+                int totalLessonsInThisCourse = 0;
+                foreach (Lesson item in db.Lessons)
+                {
+                    if (item.CourseId == courseParentId)
+                    {
+                        totalLessonsInThisCourse++;
+                    }
+                }
+                //loop through lessonViews getting total number of lessons the user has completed
+                int totalLessonViewsTheUserHasFinished = 0;
+                foreach (LessonView item in db.LessonViews)
+                {
+                    if (item.Lesson.CourseId == courseParentId)
+                    {
+                        totalLessonViewsTheUserHasFinished++;
+                    }
+                }
+
+
+                //This will save it if they have
+                if (myCourseLoop == false && totalLessonViewsTheUserHasFinished == totalLessonsInThisCourse)
+                {
+                    cc.CourseId = courseParentId;
+                    cc.UserId = theUsersID;
+                    cc.DateCompleted = DateTime.Now;
+                    db.CourseCompletions.Add(cc);
+                    db.SaveChanges();
+                }
+            }
+            //create new courseCompletion item
+
+            //check if user is in employee role
+
+            //loop through courseCompletions like above with lessonViews
+
+            #endregion
+
             return View(lesson);
         }
 

@@ -49,7 +49,7 @@ namespace LMSProject.DATA.EF//.Metadata
 
             //Probably don't need the requried if we wire this up correctly. Coding out now so it doesn't yell at me when I try and submit it blank.
             //[Required(ErrorMessage = "* Required *")]
-            [DisplayFormat(DataFormatString = "{0:d")]
+            [DisplayFormat(DataFormatString = "{0:d}")]
             public DateTime DateCompleted { get; set; }
 
             //I don't think I need the below because there is already UserId and CourseId above
@@ -108,7 +108,7 @@ namespace LMSProject.DATA.EF//.Metadata
             [Display(Name = "Lesson")]
             public int LessonId { get; set; }
 
-            [DisplayFormat(DataFormatString = "{0:d")]
+            [DisplayFormat(DataFormatString = "{0:d}")]
             public DateTime DateViewed { get; set; }
         }
 

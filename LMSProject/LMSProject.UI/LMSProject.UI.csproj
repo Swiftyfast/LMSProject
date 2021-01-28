@@ -355,6 +355,7 @@
     <Content Include="Views\CourseCompletions\Details.cshtml" />
     <Content Include="Views\CourseCompletions\Edit.cshtml" />
     <Content Include="Views\CourseCompletions\Index.cshtml" />
+    <Content Include="Views\Shared\_LessonCompleter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

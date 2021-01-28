@@ -57,6 +57,11 @@
                     <li><a href="@Url.Action("Index", "UserDetails")">Users</a></li>
                     <li><a href="@Url.Action("Index", "Courses")">Courses</a></li>
                     <li><a href="@Url.Action("Index", "Lessons")">Lessons</a></li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <li><a href="@Url.Action("Index", "CourseCompletions")">Course Completions</a></li>
+                        <li><a href="@Url.Action("Index", "LessonViews")">Lesson Views</a></li>
+                    }
                     @Html.Partial("_LoginPartial")
                 </ul>
 
