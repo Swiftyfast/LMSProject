@@ -7,7 +7,6 @@
 
 <div class="myContainer">
     @if (User.IsInRole("Admin") || User.IsInRole("Manager") || Model.UserId == User.Identity.GetUserId())
-    //Model.Where(x => x.UserId == User.Identity.GetUserId())
     {
         <h2>@ViewBag.Title</h2>
 
@@ -28,15 +27,99 @@
                 <dd>
                     @Html.DisplayFor(model => model.LastName)
                 </dd>
-
             </dl>
         </div>
-        @*@foreach (var item in )
+        @*TODO 2.Awesome: add a .Where(x => x.datecompleted.year == datetime.now.year)*@
+        <!-- #region Text based course completions-->
+
+        if (Model.CourseCompletions.Count > 0 && Model.CourseCompletions.Count < 6)
         {
+            <div>
+                @if (User.IsInRole("User"))
+                {
+                    <p>You have completed @Html.DisplayFor(model => model.CourseCompletions.Count) courses. You must complete 6 courses this year for your Continuing Education. </p>
+                }
+                else
+                {
+                    <p>@Html.DisplayFor(model => model.FullName) has completed @Html.DisplayFor(model => model.CourseCompletions.Count) courses. They must complete 6 courses this year for your Continuing Education. </p>
+                }
+            </div>
+        }
+        else if (Model.CourseCompletions.Count == 6)
+        {
+            <div>
+                @if (User.IsInRole("User"))
+                {
 
-        }*@
+                    <p>You have completed @Html.DisplayFor(model => model.CourseCompletions.Count) courses. Congratulations on your Continuing Education completion. </p>
+                }
+                else
+                {
+                    <p>@Html.DisplayFor(model => model.FullName) has completed @Html.DisplayFor(model => model.CourseCompletions.Count) courses. They have completed all required Continuing Education courses for this year.</p>
+                }
+            </div>
+        }
+        else if (Model.CourseCompletions.Count >= 6)
+        {
+            <div>
+                @if (true)
+                {
+                    <p>You have completed @Html.DisplayFor(model => model.CourseCompletions.Count) courses. You only had to complete 6 for the year, what are you doing? </p>
+                }
+                else
+                {
+                    <p>@Html.DisplayFor(model => model.FullName) has completed @Html.DisplayFor(model => model.CourseCompletions.Count) courses. They only had to complete 6 this year, it is not clear what they are doing.</p>
+                }
 
+            </div>
+        }
+        <!-- #endregion -->
 
+        //Lessons Completed table and Courses Completed table
+        <h4>Courses Completed</h4>
+        <table class="table data-table table-striped">
+            <tr>
+                <th>
+                    Courses Completed
+                </th>
+                <th>
+                    Date Completed
+                </th>
+            </tr>
+            @foreach (var item in Model.CourseCompletions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cours.CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCompleted)
+                    </td>
+                </tr>
+            }
+        </table>
+        <h4>Lessons Viewed</h4>
+        <table class="table data-table table-striped">
+            <tr>
+                <th>
+                    Lessons Viewed
+                </th>
+                <th>
+                    Date Viewed
+                </th>
+            </tr>
+            @foreach (var item in Model.LessonViews)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateViewed)
+                    </td>
+                </tr>
+            }
+        </table>
         <p>
             @if (User.IsInRole("Admin"))
             {
