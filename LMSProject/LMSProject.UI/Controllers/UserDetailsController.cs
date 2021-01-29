@@ -32,6 +32,10 @@ namespace LMSProject.UI.Controllers
             {
                 return HttpNotFound();
             }
+
+
+
+
             return View(userDetail);
         }
 
