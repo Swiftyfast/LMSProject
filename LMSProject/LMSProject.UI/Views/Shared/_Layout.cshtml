@@ -55,12 +55,33 @@
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                     <li><a href="@Url.Action("Index", "UserDetails")">Users</a></li>
-                    <li><a href="@Url.Action("Index", "Courses")">Courses</a></li>
-                    <li><a href="@Url.Action("Index", "Lessons")">Lessons</a></li>
                     @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                     {
-                        <li><a href="@Url.Action("Index", "CourseCompletions")">Course Completions</a></li>
-                        <li><a href="@Url.Action("Index", "LessonViews")">Lesson Views</a></li>
+                        <li class="dropdown" @*Maybe should be dropdown-toggle here*@>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Courses <span class="caret"></span></a>
+                            <ul class="dropdown-menu" @*same as this? maybe no class for this*@>
+                                <li><a href="@Url.Action("Index", "Courses")">Courses List</a></li>
+                                <li><a href="@Url.Action("Index", "CourseCompletions")">Course Completions</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Index", "Courses")">Courses</a></li>
+                    }
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <li class="dropdown" @*Maybe should be dropdown-toggle here*@>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lessons <span class="caret"></span></a>
+                            <ul class="dropdown-menu" @*same as this? maybe no class for this*@>
+                                <li><a href="@Url.Action("Index", "Lessons")">Lessons List</a></li>
+                                <li><a href="@Url.Action("Index", "LessonViews")">Lesson Views</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Index", "Lessons")">Lessons</a></li>
                     }
                     @Html.Partial("_LoginPartial")
                 </ul>
@@ -85,10 +106,10 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="footer-info">
                         <div class="section-title">
-                            <h2>Headquarter</h2>
+                            <h2>Headquarters</h2>
                         </div>
                         <address>
-                            <p>1800 dapibus a tortor pretium,<br> Integer nisl dui, ABC 12000</p>
+                            <p>1800 South Main Street,<br> Missouri City, KS 12000</p>
                         </address>
 
                         @*<ul class="social-icon">
@@ -98,7 +119,7 @@
                             </ul>*@
 
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2019 Company Name</p>
+                            <p>Copyright &copy; 2019 John Swift</p>
 
                             <p>Design: TemplateMo</p>
                         </div>
