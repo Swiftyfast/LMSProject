@@ -7,8 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LMSProject.DATA.EF;
+using LMSProject.UI.Models;
 using LMSProject.UI.Utilities;
 using Microsoft.AspNet.Identity;
+using System.Net.Mail;
 
 namespace LMSProject.UI.Controllers
 {
@@ -136,6 +138,47 @@ namespace LMSProject.UI.Controllers
                     cc.DateCompleted = DateTime.Now;
                     db.CourseCompletions.Add(cc);
                     db.SaveChanges();
+
+                    #region send an email upon course completion
+                    ContactViewModel cvm = new ContactViewModel();
+                    cvm.Name = User.Identity.Name;
+                    cvm.Subject = "FINAL PROJECT COURSE COMPLETION - " + lesson.Cours.CourseName;
+                    cvm.Email = User.Identity.Name;
+                    cvm.Message = "I HAVE FINISHED THIS COURSE";
+
+                    string emailBody = $"You have received a FINAL PROJECT email where {cvm.Name} with a subject of {cvm.Subject}. Please respond to {cvm.Email} with your response the following message: <br /><br /> {cvm.Message}";
+
+                    MailMessage msg = new MailMessage
+                    (
+                        //From
+                        "no-reply@johndavidswift.com",
+                        //To(where the actual message is sent)
+                        "jdavidswift@gmail.com",
+                        //Subject
+                        "Email from johndavidswift.com",
+                        //Body
+                        emailBody
+                    );
+
+                    msg.IsBodyHtml = true;
+
+                    SmtpClient client = new SmtpClient("mail.johndavidswift.com");
+
+                    client.Credentials = new NetworkCredential("no-reply@johndavidswift.com", "LOL_NOPE");
+                    client.Port = 8889;
+
+                    try
+                    {
+                        client.Send(msg);
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.ErrorMessage = $"Sorry, something went wrong. Error message: {ex.Message}<br />{ex.StackTrace}";
+                        return View(cvm);
+                    }
+
+
+                    #endregion   
                 }
             }
             //create new courseCompletion item
