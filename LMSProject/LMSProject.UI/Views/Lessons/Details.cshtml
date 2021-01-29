@@ -25,13 +25,13 @@
                 @Html.DisplayFor(model => model.Introduction)
             </dd>
 
-            <dt>
+            @*<dt>
                 @Html.DisplayNameFor(model => model.VideoURL)
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.VideoURL)
-            </dd>
+            </dd>*@
 
             <dt>
 
@@ -72,10 +72,15 @@
 
         </dl>
     </div>
+    @if (Model.VideoURL != null)
+    {
+        <p class="myMatchTextClass">Please watch this video:</p>
+        <iframe id="ytplayer" type="text/html" width="640" height="360" src="@Model.VideoURL" frameborder="0"></iframe>
+    }
     <p>
         @if (User.IsInRole("Admin"))
         {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }, new { @class = "btn myPrimary" })
+            @Html.ActionLink("Edit", "Edit", new { id = Model.LessonId }, new { @class = "btn myPrimary" })
             @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
         }
         else

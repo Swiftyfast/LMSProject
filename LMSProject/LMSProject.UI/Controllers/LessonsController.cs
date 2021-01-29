@@ -165,7 +165,7 @@ namespace LMSProject.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                #region File Upload
+                #region PDF File Upload
                 string file = "NoFile.pdf";
 
                 if(lessonPDF != null)
@@ -193,6 +193,14 @@ namespace LMSProject.UI.Controllers
 
 
                 #endregion
+
+                #region Youtube Video upload
+                if (lesson.VideoURL != null && lesson.VideoURL.Contains("/watch"))
+                {
+                    lesson.VideoURL = lesson.VideoURL.Replace("/watch?v=", "/embed/");
+                }
+                #endregion
+
                 db.Lessons.Add(lesson);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -227,7 +235,7 @@ namespace LMSProject.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                #region File Upload
+                #region PDF File Upload
                 //string file = "NoFile.pdf";//Create code
                 if (lessonPDF != null)
                 {
@@ -254,6 +262,14 @@ namespace LMSProject.UI.Controllers
                     }
                 }
                 #endregion
+
+                #region Youtube Video upload
+                if (lesson.VideoURL != null && lesson.VideoURL.Contains("/watch"))
+                {
+                    lesson.VideoURL = lesson.VideoURL.Replace("/watch?v=", "/embed/");
+                }
+                #endregion
+
                 db.Entry(lesson).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

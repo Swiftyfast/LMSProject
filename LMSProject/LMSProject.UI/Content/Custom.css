@@ -32,6 +32,11 @@
         color: #843534
     }*/
 
+.myMatchTextClass {
+    font-size: 14px;
+    font-family: 'Nunito', 'sans-serif';
+}
+
 /***********My button stylings/***********/
 
 /*Base colors, or type 1*/

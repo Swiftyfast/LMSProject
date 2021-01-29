@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<LMSProject.DATA.EF.Course>
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Courses";
@@ -19,6 +20,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CourseName)
             </th>
+            @*<th>
+
+            </th>*@
             <th></th>
         </tr>
 
@@ -28,6 +32,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CourseName)
                 </td>
+                @*<td>
+                    @if (item.CourseCompletions.GetUserId())
+                    {
+
+                    }
+                    @Html.DisplayFor(modelItem => item.CourseCompletions)
+                </td>*@
                 <td>
                     @if (User.IsInRole("Admin"))
                     {
