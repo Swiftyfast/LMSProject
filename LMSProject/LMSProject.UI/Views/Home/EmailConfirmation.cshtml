@@ -1,0 +1,25 @@
+﻿@model LMSProject.UI.Models.ContactViewModel
+@{
+    ViewBag.Title = "Email Confirmation";
+}
+
+<section>
+    <div class="myContainer" style="border-color:#29C98D;">
+        <h2>@ViewBag.Title</h2>
+
+        <h3>Thank you @Model.Name!</h3>
+        <p>
+            We have received your email, and will respond soon. Details of your message are below:
+        </p>
+
+        <p>
+            Name: @Model.Name
+            <br />
+            Email: @Model.Email
+            <br />
+            Subject: @Model.Subject
+            <br />
+            Message: @Model.Message
+        </p>
+    </div>
+</section>

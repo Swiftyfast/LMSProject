@@ -37,6 +37,11 @@
     font-family: 'Nunito', 'sans-serif';
 }
 
+.myCenterClass{
+    text-align: center;
+    align-content: center;
+}
+
 /***********My button stylings/***********/
 
 /*Base colors, or type 1*/
