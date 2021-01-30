@@ -54,7 +54,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a href="@Url.Action("Index", "UserDetails")">Users</a></li>
+                    <li><a href="@Url.Action("Index", "UserDetails")">Employees</a></li>
                     @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                     {
                         <li class="dropdown" @*Maybe should be dropdown-toggle here*@>
@@ -94,7 +94,7 @@
         </div>
     </section>
     <br />
-    <div @* class="container body-content"*@ @*To the left is coded out because I would like to see what the template does normaly before readding it*@>
+    <div class="myMainContent">
         @RenderBody()
     </div>
 

@@ -37,11 +37,11 @@
             <div>
                 @if (User.IsInRole("User"))
                 {
-                    <p>You have completed @Html.DisplayFor(model => model.CourseCompletions.Count) courses. You must complete 6 courses this year for your Continuing Education. </p>
+                    <p>You have completed <b>@Html.DisplayFor(model => model.CourseCompletions.Count)</b> courses. You must complete <b>6</b> courses this year for your Continuing Education. </p>
                 }
                 else
                 {
-                    <p>@Html.DisplayFor(model => model.FullName) has completed @Html.DisplayFor(model => model.CourseCompletions.Count) courses. They must complete 6 courses this year for your Continuing Education. </p>
+                    <p>@Html.DisplayFor(model => model.FullName) has completed <b>@Html.DisplayFor(model => model.CourseCompletions.Count)</b> courses. They must complete <b>6</b> courses this year for your Continuing Education. </p>
                 }
             </div>
         }
@@ -76,6 +76,10 @@
         <!-- #endregion -->
 
         //Lessons Completed table and Courses Completed table
+        if (Model.CourseCompletions.Count > 0)
+        {
+
+        
         <h4>Courses Completed</h4>
         <table class="table data-table table-striped">
             <tr>
@@ -105,6 +109,9 @@
                     Lessons Viewed
                 </th>
                 <th>
+                    Course
+                </th>
+                <th>
                     Date Viewed
                 </th>
             </tr>
@@ -115,11 +122,15 @@
                         @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Lesson.Cours.CourseName)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.DateViewed)
                     </td>
                 </tr>
             }
         </table>
+        }
         <p>
             @if (User.IsInRole("Admin"))
             {

@@ -1,46 +1,49 @@
 ﻿@model IEnumerable<LMSProject.DATA.EF.LessonView>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lesson View Index";
 }
 
-<h2>Index</h2>
+<div class="myContainer" style="overflow-x:auto;">
+    <h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateViewed)
-        </th>
-        <th></th>
-    </tr>
+    @*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+    <table class="table data-table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserDetail.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateViewed)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FullName)
-        </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserDetail.FullName)
+                </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.DateViewed)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.LessonViewId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewId })
-        </td>
-    </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateViewed)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.LessonViewId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewId })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

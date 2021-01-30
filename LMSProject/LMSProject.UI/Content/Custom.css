@@ -42,6 +42,10 @@
     align-content: center;
 }
 
+.myMainContent{
+    min-height: 600px;
+}
+
 /***********My button stylings/***********/
 
 /*Base colors, or type 1*/
