@@ -1,42 +1,51 @@
 ﻿@model LMSProject.DATA.EF.LessonView
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Lesson View Details";
+    ViewBag.SubTitle = Model.UserDetail.FullName + " completetion of lesson " + Model.Lesson.LessonTitle;
 }
 
-<h2>Details</h2>
+<div class="myContainer">
+    <h2>@ViewBag.Title</h2>
+    <h4>@ViewBag.SubTitle</h4>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Date completed
+            </dt>
 
-<div>
-    <h4>LessonView</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DateViewed)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateViewed)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateViewed)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Lesson.LessonTitle)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Lesson.LessonTitle)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserDetail.FullName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserDetail.FullName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserDetail.FirstName)
-        </dd>
+        </dl>
+    </div>
+    <p>
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.LessonViewId }, new { @class = "btn myPrimary" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
+        }
+        else
+        {
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton" })
+        }
 
-    </dl>
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LessonViewId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

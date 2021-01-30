@@ -7,8 +7,6 @@
 <div class="myContainer">
     @if (User.IsInRole("Admin"))
     {
-
-
         <h2>@ViewBag.Title</h2>
 
         <h3 class="alert myAlert">Are you sure you want to delete this?</h3>
@@ -54,7 +52,7 @@
     else
     {
         <h2>Welcome to the delete page.</h2>
-        <h4>You do not currently have the status to delete a user's information.</h4>
+        <h4>You do not currently have the status to delete a course completion.</h4>
         <div>
             @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton" })
             }

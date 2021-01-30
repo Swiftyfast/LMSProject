@@ -7,10 +7,15 @@
 <div class="myContainer" style="overflow-x:auto;">
     <h2>@ViewBag.Title</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn myPrimary" })
-        @Html.ActionLink("View Inactive", "InactiveIndex", null, new { @class = "btn myDanger leftMarge" })
-    </p>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn myPrimary" })
+            @Html.ActionLink("View Inactive", "InactiveIndex", null, new { @class = "btn myDanger leftMarge" })
+        </p>
+    }
+
     <table class="table data-table table-striped">
         <tr>
             <th>
