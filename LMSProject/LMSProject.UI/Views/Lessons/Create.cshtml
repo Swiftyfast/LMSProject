@@ -27,9 +27,9 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CourseId, "Course Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("CourseId", null, "[ -Choose a Course- ]", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="checkbox">
@@ -67,11 +67,11 @@
                         @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            </div>
+            </div>*@
 
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn myPrimary" />
-                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton" })
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
             </div>
             <br />
             <br />
@@ -82,7 +82,7 @@
     <h2>Welcome to the create page.</h2>
     <h4>Unfortunately, you do not currently have the status to create a new lesson.</h4>
     <div>
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton" })
     </div>
     }
 </div>

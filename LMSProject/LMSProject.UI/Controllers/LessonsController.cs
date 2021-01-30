@@ -208,6 +208,7 @@ namespace LMSProject.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                lesson.IsActive = true;
                 #region PDF File Upload
                 string file = "NoFile.pdf";
 
