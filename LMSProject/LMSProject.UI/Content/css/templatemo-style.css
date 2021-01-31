@@ -383,7 +383,8 @@ https://templatemo.com/tm-516-known
   .caption h3 a:hover { color: #FF3; }
 
 .home-slider .item-first {
-    background-image: url('../images/slider-image1.jpg');
+
+    background-image: url('../images/lab2.jfif');
     background-position: center;
 }
 
@@ -392,7 +393,7 @@ https://templatemo.com/tm-516-known
 }
 
 .home-slider .item-third {
-    background-image: url('../images/slider-image3.jpg');
+    background-image: url('../images/science2.jfif');
 }
 
 

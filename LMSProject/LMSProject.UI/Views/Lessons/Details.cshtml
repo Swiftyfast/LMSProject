@@ -54,13 +54,13 @@
 
             </dd>
 
-            <dt>
+            @*<dt>
                 @Html.DisplayNameFor(model => model.IsActive)
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.IsActive)
-            </dd>
+            </dd>*@
 
             <dt>
                 @Html.DisplayNameFor(model => model.Cours.CourseName)
@@ -74,8 +74,11 @@
     </div>
     @if (Model.VideoURL != null)
     {
+    <div class="myCenterClass">
         <p class="myMatchTextClass">Please watch this video:</p>
         <iframe id="ytplayer" type="text/html" width="640" height="360" src="@Model.VideoURL" frameborder="0"></iframe>
+    </div>
+    <br />
     }
     <p>
         @if (User.IsInRole("Admin"))

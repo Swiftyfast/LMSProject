@@ -208,7 +208,9 @@
     <Content Include="Content\images\courses-image4.jpg" />
     <Content Include="Content\images\courses-image5.jpg" />
     <Content Include="Content\images\lab1.jfif" />
+    <Content Include="Content\images\lab2.jfif" />
     <Content Include="Content\images\science1.jfif" />
+    <Content Include="Content\images\science2.jfif" />
     <Content Include="Content\images\slider-image1.jpg" />
     <Content Include="Content\images\slider-image2.jpg" />
     <Content Include="Content\images\slider-image3.jpg" />
