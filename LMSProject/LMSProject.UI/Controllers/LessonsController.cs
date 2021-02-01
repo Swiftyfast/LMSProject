@@ -349,9 +349,18 @@ namespace LMSProject.UI.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Lesson lesson = db.Lessons.Find(id);
-            db.Lessons.Remove(lesson);
+            lesson.IsActive = !lesson.IsActive;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            if (lesson.IsActive)
+            {
+                return RedirectToAction("Index");
+            } else
+            {
+                return RedirectToAction("InactiveIndex");
+            }
+            //db.Lessons.Remove(lesson);
+            //db.SaveChanges();
+            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
