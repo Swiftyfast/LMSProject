@@ -21,7 +21,11 @@ namespace LMSProject.UI.Controllers
         // GET: Lessons
         public ActionResult Index()
         {
+            //original 
             var lessons = db.Lessons.Include(l => l.Cours).Where(x => x.IsActive);
+
+            //2.Awesomeattempt
+            //var lessons2 = db.Lessons.Include(l => l.Cours).Include(y => y.LessonViews.Where(z => z.UserId == User.Identity.GetUserId())).Where(x => x.IsActive);
             return View(lessons.ToList());
         }
 
