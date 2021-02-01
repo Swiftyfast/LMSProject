@@ -18,18 +18,13 @@ namespace LMSProject.UI.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            //var thisList = db.Courses.Where(x => x.IsActive).ToList();
-            //if (User.IsInRole("User") && db.CourseCompletions.Where(z => z.UserDetail.UserId == User.Identity.GetUserId().Count > 0)
-            //{
-            //    thisList = db.Courses.Include(y => y.CourseCompletions.Where(z => z.UserId == User.Identity.GetUserId())).Where(x => x.IsActive).ToList();
-            //} else
-            //{
-            //    thisList = db.Courses.Where(x => x.IsActive).ToList();
-            //}
-            
+            var theUserId = User.Identity.GetUserId();
+            //var myList = db.Courses.Where(x => x.IsActive).Include(y => y.CourseCompletions.Select(z => z.UserDetail).Where(i => i.UserId == theUserId));
 
-            //return View(thisList);
-            return View(db.Courses.Where(x => x.IsActive).ToList());
+            var aNewList = db.Courses.Include("CourseCompletions").ToList();
+          
+            return View(aNewList);
+            //return View(db.Courses.Where(x => x.IsActive).ToList());
         }
 
         //GET: Inactive courses
@@ -127,10 +122,20 @@ namespace LMSProject.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            //Soft Delete
             Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            course.IsActive = !course.IsActive;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            if (course.IsActive)
+            {
+                return RedirectToAction("Index");
+            } else
+            {
+                return RedirectToAction("InactiveIndex");
+            }
+            //db.Courses.Remove(course);
+            //db.SaveChanges();
+            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

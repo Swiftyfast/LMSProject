@@ -20,9 +20,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.CourseName)
             </th>
-            @*<th class="myCenterClass">
-                Completed?
-            </th>*@
+            @if (User.IsInRole("User"))
+            {
+            <th class="myCenterClass">
+                Completed
+            </th>
+            }
             <th></th>
         </tr>
 
@@ -34,29 +37,31 @@
                         @Html.DisplayFor(modelItem => item.CourseName)
                     </a>
                 </td>
-                @*<td class="myCenterClass">
-                    @if (item.Where()CourseCompletions.Where(x => x.UserId == User.Identity.GetUserId()).)
-                        {
-                            < i class="fa fa-check-circle-o"></i>
-                        }
-
-                    </td>*@
-                    <td>
-                        @if(User.IsInRole("Admin"))
-                        {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.CourseId
+                @if (User.IsInRole("User"))
+                {
+                <td class="myCenterClass">
+                    @if (item.CourseCompletions.Where(x => x.UserDetail.UserId == User.Identity.GetUserId()).Count() > 0)
+                    {
+                        <i class="fa fa-check-circle-o"></i>
+                    }
+                </td>
+                }
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CourseId
 }) @:|
-                            @Html.ActionLink("Details", "Details", new { id = item.CourseId }) @:|
-                            @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
+                        @Html.ActionLink("Details", "Details", new { id = item.CourseId }) @:|
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
                     }
                     else
                     {
-                    @Html.ActionLink("Details", "Details", new { id = item.CourseId })
+                        @Html.ActionLink("Details", "Details", new { id = item.CourseId })
                     }
 
                 </td>
             </tr>
-                    }
+        }
 
     </table>
 </div>
