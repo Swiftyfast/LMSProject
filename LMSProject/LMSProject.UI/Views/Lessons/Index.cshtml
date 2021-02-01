@@ -20,7 +20,7 @@
     <table class="table data-table table-striped">
         <tr>
             <th>
-                Course Name [In progress]
+                Course Name
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LessonTitle)
@@ -37,31 +37,31 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cours.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LessonTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Introduction)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.LessonTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Introduction)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cours.CourseName)
-                </td>
-                <td>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.LessonId }) @:|
-                        @Html.ActionLink("Details", "Details", new { id = item.LessonId }) @:|
-                        @Html.ActionLink("Delete", "Delete", new { id = item.LessonId })
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Details", "Details", new { id = item.LessonId })
-                    }
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LessonId }) @:|
+                    @Html.ActionLink("Details", "Details", new { id = item.LessonId }) @:|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LessonId })
+                }
+                else
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.LessonId })
+                }
 
-                </td>
-            </tr>
+            </td>
+        </tr>
         }
 
 

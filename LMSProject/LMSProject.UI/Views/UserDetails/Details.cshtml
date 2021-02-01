@@ -29,10 +29,8 @@
                 </dd>
             </dl>
         </div>
-        @*TODO 2.Awesome: add a .Where(x => x.datecompleted.year == datetime.now.year)*@
-        <!-- #region Text based course completions-->
 
-        if (Model.CourseCompletions.Count > 0 && Model.CourseCompletions.Count < 6)
+        if (Model.CourseCompletions.Count >= 0 && Model.CourseCompletions.Count < 6)
         {
             <div>
                 @if (User.IsInRole("User"))

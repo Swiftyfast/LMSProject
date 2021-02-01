@@ -154,12 +154,17 @@ namespace LMSProject.UI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //this will put a new user into an automatic role
+                    //check mvc2
+                    UserManager.AddToRole(user.Id, "User");
+
                     #region Dealing with custom user details
                     //Below was a recommendation from intellisense instead of UserDetails and UserDetails()
                     UserDetail newUserDeets = new UserDetail();
                     newUserDeets.UserId = user.Id;
                     newUserDeets.FirstName = model.FirstName;
                     newUserDeets.LastName = model.LastName;
+                    
                     //newUserDeets.ResumeFile = model.ResumeFile;//I don't think I have to do this it was just in the example.
 
                     LMSProjectEntities db = new LMSProjectEntities();

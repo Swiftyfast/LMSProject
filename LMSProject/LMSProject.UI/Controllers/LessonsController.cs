@@ -111,29 +111,31 @@ namespace LMSProject.UI.Controllers
                         myCourseLoop = true;
                     }
                 }
-
-                //Need some logic in here that can tell if the course has been totally completed
-
+                
                 //loop through lessons getting number of total lessons in a course
-                int totalLessonsInThisCourse = 0;
-                foreach (Lesson item in db.Lessons)
-                {
-                    if (item.CourseId == courseParentId)
-                    {
-                        totalLessonsInThisCourse++;
-                    }
-                }
+                //int totalLessonsInThisCourse = 0;
+                //foreach (Lesson item in db.Lessons)
+                //{
+                //    if (item.CourseId == courseParentId)
+                //    {
+                //        totalLessonsInThisCourse++;
+                //    }
+                //}
+
+                int totalLessonsInThisCourse = db.Lessons.Where(x => x.CourseId == courseParentId).Count();
+
                 //loop through lessonViews getting total number of lessons the user has completed
-                int totalLessonViewsTheUserHasFinished = 0;
-                foreach (LessonView item in db.LessonViews)
-                {
-                    if (item.Lesson.CourseId == courseParentId)
-                    {
-                        totalLessonViewsTheUserHasFinished++;
-                    }
-                }
+                //int totalLessonViewsTheUserHasFinished = 0;
+                //foreach (LessonView item in db.LessonViews)
+                //{
+                //    if (item.Lesson.CourseId == courseParentId)
+                //    {
+                //        totalLessonViewsTheUserHasFinished++;
+                //    }
+                //}
 
-
+                int totalLessonViewsTheUserHasFinished = db.LessonViews.Where(x => x.Lesson.CourseId == courseParentId).Where(y => y.UserId == theUsersID).Count();
+                
                 //This will save it if they have
                 if (myCourseLoop == false && totalLessonViewsTheUserHasFinished == totalLessonsInThisCourse)
                 {
@@ -178,7 +180,7 @@ namespace LMSProject.UI.Controllers
                     catch (Exception ex)
                     {
                         ViewBag.ErrorMessage = $"Sorry, something went wrong. Error message: {ex.Message}<br />{ex.StackTrace}";
-                        return View(cvm);
+                        return View(lesson);
                     }
 
 
