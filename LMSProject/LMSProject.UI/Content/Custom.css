@@ -51,6 +51,10 @@ textarea{
     resize: none;
 }
 
+.redText{
+    color: red;
+}
+
 /***********My button stylings/***********/
 
 /*Base colors, or type 1*/

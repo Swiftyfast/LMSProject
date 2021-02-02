@@ -31,7 +31,9 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.UserDetail.FullName)
+                <a href="@Url.Action("Details/" + Model.UserDetail.UserId, "UserDetails")">
+                    @Html.DisplayFor(model => model.UserDetail.FullName)
+                    </a>
             </dd>
 
         </dl>
