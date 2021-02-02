@@ -75,7 +75,8 @@
             {
                <tr>
                    <td>
-                       @Html.DisplayFor(modelitem => item.FullName)
+                       @*@Html.DisplayFor(modelitem => item.FullName)*@
+                       <a href="@Url.Action("Details/" + item.UserId, "UserDetails")">@Html.DisplayFor(modelItem => item.FullName)</a>
                    </td>
                    <td>
                        <a href="@Url.Action("Details", "UserDetails", new {id = item.UserId})" class="lgScreenlftMarge">

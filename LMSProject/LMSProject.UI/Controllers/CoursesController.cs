@@ -21,7 +21,7 @@ namespace LMSProject.UI.Controllers
             var theUserId = User.Identity.GetUserId();
             //var myList = db.Courses.Where(x => x.IsActive).Include(y => y.CourseCompletions.Select(z => z.UserDetail).Where(i => i.UserId == theUserId));
 
-            var aNewList = db.Courses.Include("CourseCompletions").ToList();
+            var aNewList = db.Courses.Where(x => x.IsActive).Include("CourseCompletions").ToList();
           
             return View(aNewList);
             //return View(db.Courses.Where(x => x.IsActive).ToList());
