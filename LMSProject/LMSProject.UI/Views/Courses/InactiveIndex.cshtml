@@ -23,12 +23,20 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CourseName)
+                    <a href="@Url.Action("Details/" + item.CourseId, "Courses")">
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                    </a>
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.CourseId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
+                    <a href="@Url.Action("Edit", "Courses", new { id = item.CourseId })">
+                        <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                    </a>
+                    <a href="@Url.Action("Details", "Courses", new { id = item.CourseId })" class="lgScreenlftMarge">
+                        <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    </a>
+                    <a href="@Url.Action("Delete", "Courses", new { id = item.CourseId })" class="lgScreenlftMarge">
+                        <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    </a>
                 </td>
             </tr>
         }

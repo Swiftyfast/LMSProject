@@ -22,10 +22,13 @@
             </th>
             @if (User.IsInRole("User"))
             {
-            <th class="myCenterClass">
-                Completed
-            </th>
+                <th class="myCenterClass">
+                    Completed
+                </th>
             }
+            <th class="myCenterClass">
+                Lessons in Course
+            </th>
             <th></th>
         </tr>
 
@@ -39,24 +42,34 @@
                 </td>
                 @if (User.IsInRole("User"))
                 {
-                <td class="myCenterClass">
-                    @if (item.CourseCompletions.Where(x => x.UserDetail.UserId == User.Identity.GetUserId()).Count() > 0)
-                    {
-                        <i class="fa fa-check-circle-o"></i>
-                    }
-                </td>
+                    <td class="myCenterClass">
+                        @if (item.CourseCompletions.Where(x => x.UserDetail.UserId == User.Identity.GetUserId()).Count() > 0)
+                        {
+                            <i class="fa fa-check-circle-o"></i>
+                        }
+                    </td>
                 }
+                <td class="myCenterClass">
+                    @item.Lessons.Count()
+                </td>
                 <td>
                     @if (User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CourseId
-}) @:|
-                        @Html.ActionLink("Details", "Details", new { id = item.CourseId }) @:|
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
+                        <a href="@Url.Action("Edit", "Courses", new { id = item.CourseId })">
+                            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("Details", "Courses", new { id = item.CourseId })" class="lgScreenlftMarge">
+                            <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Courses", new { id = item.CourseId })" class="lgScreenlftMarge">
+                            <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                        </a>
                     }
                     else
                     {
-                        @Html.ActionLink("Details", "Details", new { id = item.CourseId })
+                        <a href="@Url.Action("Details", "Courses", new { id = item.CourseId })">
+                            <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                        </a>
                     }
 
                 </td>

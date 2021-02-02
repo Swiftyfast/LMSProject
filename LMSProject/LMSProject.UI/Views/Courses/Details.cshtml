@@ -65,11 +65,26 @@
         @if (User.IsInRole("Admin"))
         {
             @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }, new { @class = "btn myPrimary" })
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
+            if (Model.IsActive)
+            {
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton leftMarge" })
+            }
+            else if (!Model.IsActive)
+            {
+                @Html.ActionLink("Back to List", "InactiveIndex", null, new { @class = "btn myBackButton leftMarge" })
+            }
+
         }
         else
         {
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton" })
+            if (Model.IsActive)
+            {
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn myBackButton" })
+            }
+            else if (!Model.IsActive)
+            {
+                @Html.ActionLink("Back to List", "InactiveIndex", null, new { @class = "btn myBackButton" })
+            }
         }
 
 

@@ -31,18 +31,27 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
+                        <a href="@Url.Action("Details/" + item.UserId, "UserDetails")">@Html.DisplayFor(modelItem => item.FullName)</a>
+                        
                     </td>
                     <td>
                         @if (User.IsInRole("Admin"))
                         {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) @:|
-                            @Html.ActionLink("Details", "Details", new { id = item.UserId }) @:|
-                            @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                            <a href="@Url.Action("Edit", "UserDetails", new {id = item.UserId})">
+                                <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Details", "UserDetails", new {id = item.UserId})" class="lgScreenlftMarge">
+                                <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "UserDetails", new {id = item.UserId})" class="lgScreenlftMarge">
+                                <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                            </a>
                         }
                         else
                         {
-                            @Html.ActionLink("Details", "Details", new { id = item.UserId })
+                            <a href="@Url.Action("Details", "UserDetails", new {id = item.UserId})" class="lgScreenlftMarge">
+                                <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                            </a>
                         }
 
                     </td>
@@ -69,7 +78,9 @@
                        @Html.DisplayFor(modelitem => item.FullName)
                    </td>
                    <td>
-                       @Html.ActionLink("Details", "Details", new { id = item.UserId })
+                       <a href="@Url.Action("Details", "UserDetails", new {id = item.UserId})" class="lgScreenlftMarge">
+                           <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                       </a>
                    </td>
                </tr>
             }

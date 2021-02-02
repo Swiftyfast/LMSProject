@@ -44,9 +44,15 @@
                 @Html.DisplayFor(modelItem => item.DateViewed)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.LessonViewId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewId })
+                <a href="@Url.Action("Edit", "LessonViews", new {id = item.LessonViewId})">
+                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                </a>
+                <a href="@Url.Action("Details", "LessonViews", new {id = item.LessonViewId})" class="lgScreenlftMarge">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                </a>
+                <a href="@Url.Action("Delete", "LessonViews", new {id = item.LessonViewId})" class="lgScreenlftMarge">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                </a>
             </td>
         </tr>
         }

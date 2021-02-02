@@ -20,17 +20,17 @@
     <table class="table data-table table-striped">
         <tr>
             <th>
-                Course Name
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.LessonTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Introduction)
+                Course Name
             </th>
-            <th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.Cours.CourseName)
-            </th>
+            </th>*@
             <th></th>
         </tr>
 
@@ -39,25 +39,37 @@
         {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Cours.CourseName)
+                <a href="@Url.Action("Details/" + item.LessonId, "Lessons")">
+                    @Html.DisplayFor(modelItem => item.LessonTitle)
+                </a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LessonTitle)
+                <a href="@Url.Action("Details/" + item.Cours.CourseId, "Courses")">
+                    @Html.DisplayFor(modelItem => item.Cours.CourseName)
+                </a>
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Introduction)
-            </td>
+            </td>*@
 
             <td>
                 @if (User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.LessonId }) @:|
-                    @Html.ActionLink("Details", "Details", new { id = item.LessonId }) @:|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.LessonId })
+                        <a href="@Url.Action("Edit", "Lessons", new { id = item.LessonId })">
+                            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("Details", "Lessons", new {id = item.LessonId})" class="lgScreenlftMarge">
+                            <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Lessons", new {id = item.LessonId})" class="lgScreenlftMarge">
+                            <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                        </a>
                 }
                 else
                 {
-                    @Html.ActionLink("Details", "Details", new { id = item.LessonId })
+                    <a href="@Url.Action("Details", "CourseCompletions", new {id = item.LessonId})" class="lgScreenlftMarge">
+                        <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    </a>
                 }
 
             </td>
