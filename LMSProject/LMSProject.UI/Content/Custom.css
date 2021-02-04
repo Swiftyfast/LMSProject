@@ -44,6 +44,14 @@
     align-content: center;
 }
 
+.myCenterClassTwo {
+    text-align: center;
+    align-content: center;
+    border-radius: 4px;
+    font-size: 2em;
+    padding-top: 1em;
+}
+
 .myMainContent{
     min-height: 600px;
 }

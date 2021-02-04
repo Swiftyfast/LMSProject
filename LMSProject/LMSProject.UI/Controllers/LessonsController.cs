@@ -70,7 +70,6 @@ namespace LMSProject.UI.Controllers
                         myLoop = true;
                     }
                 }
-
                 //create the lessionview
                 if (myLoop == false)
                 {
